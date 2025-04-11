@@ -1,0 +1,10 @@
+<div class="min-h-auto w-80 p-4">
+</div>
+<div class="not-prose grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 m-4">
+	<% page.posts.each(function(post, index){ %>
+		<%- partial('_partial/article', {index: true, post: post}) %>
+	<% }) %>
+</div>
+<% if (page.total > 1) { %>
+	<%- partial('_partial/paginator') %>
+<% } %>

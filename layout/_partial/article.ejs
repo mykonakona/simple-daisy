@@ -1,0 +1,41 @@
+<% if (index) { %>
+    <div class="card bg-secondary border-b-2 shadow-md">
+        <div class="card-body min-h-60">
+            <h2 class="card-title">
+                <a href="<%- url_for(post.link ? post.link : post.path) %>" itemprop="url"><%= post.title %></a>
+            </h2>
+            <p class="">     
+                <%- date(post.date, 'YYYY-M-D') %>
+            </p>
+                <% if (post.excerpt){ %>
+                    <div class="min-h-12">
+                        <%- post.excerpt %>
+                    </div>                        
+                <% } %>
+            </p>
+          <div class="card-actions justify-end">
+                <%- list_tags(post.tags, {class: {a: 'badge badge-primary text-base-100'}, show_count: false, style: false, separator: ' '}) %>
+
+          </div>
+        </div>
+      </div>
+<% } else { %>
+    <div class="mx-auto px-4">
+        <article class="mx-auto max-w-7xl prose ">
+                <div class="mb-4 text-3xl font-bold">
+                    <%= post.title %>
+                </div>
+                <div class="text-base">
+                    <%= date(post.date, 'YYYY-MM-DD') %>
+                </div>
+                <div class="text-base">
+                    <%- post.content %>     
+                </div>             
+        </article>
+    </div>            
+<% } %>
+
+
+
+
+
