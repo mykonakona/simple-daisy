@@ -1,40 +1,32 @@
-<div class="mx-auto px-4">
-    <div class="card">
-        <div class="card-title">    
-        </div>
-        <div class="card-body">
-            <article class="mx-auto max-w-5xl">
-            <% if (pagination == 2){ %>
-                <% page.posts.each(function(post){ %>
-                  <%- partial('article', {post: post, index: true}) %>
-                <% }) %>
-              <% } else { %>
-                <% var last; %>
-                <% page.posts.each(function(post, i){ %>
-                  <% var year = post.date.year(); %>
-                  <% if (last != year){ %>
-                    <% if (last != null){ %>
-                      </div></section>
-                    <% } %>
-                    <% last = year; %>
-                    <section class="archives-wrap">
-                        <div class="archive-year-wrap mx-4">
-                            <a href="<%- url_for(config.archive_dir + '/' + year) %>" class="archive-year"><%= year %></a>
-                        </div>
-                        <div class="archives">
-                  <% } %>
-                        <div class="collapse-title text-3xl font-bold">
-                            <a href="<%- url_for(post.link ? post.link : post.path) %>" itemprop="url"><%= post.title %></a>
-                        </div>
-                <% }) %>
-                <% if (page.posts.length){ %>
-                  </div></section>
-                <% } %>
-              <% } %>
-              <% if (page.total > 1) { %>
-            	<%- partial('_partial/paginator') %>
-            <% } %>        
-            </article>
-        </div>
-    </div>
-</div>
+<article class="mx-auto max-w-5xl p-4">
+<% if (pagination == 2){ %>
+    <% page.posts.each(function(post){ %>
+      <%- partial('article', {post: post, index: true}) %>
+    <% }) %>
+  <% } else { %>
+    <% var last; %>
+    <% page.posts.each(function(post, i){ %>
+      <% var year = post.date.year(); %>
+      <% if (last != year){ %>
+        <% if (last != null){ %>
+          </div></section>
+        <% } %>
+        <% last = year; %>
+        <section class="archives-wrap">
+            <div class="archive-year-wrap mx-4">
+                <a href="<%- url_for(config.archive_dir + '/' + year) %>" class="archive-year"><%= year %></a>
+            </div>
+            <div class="archives">
+      <% } %>
+            <div class="collapse-title sm:text-3xl lg:text-3xl font-bold">
+                <a href="<%- url_for(post.link ? post.link : post.path) %>" itemprop="url"><%= post.title %></a>
+            </div>
+    <% }) %>
+    <% if (page.posts.length){ %>
+      </div></section>
+    <% } %>
+  <% } %>
+  <% if (page.total > 1) { %>
+	<%- partial('_partial/paginator') %>
+<% } %>        
+</article>
