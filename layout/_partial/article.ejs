@@ -25,7 +25,7 @@
             <div class="card-title">    
             </div>
             <div class="card-body w-full mx-auto">
-                <article class="prose max-w-4xl">
+                <article class="prose max-w-5xl">
                     <div class="mb-4 text-3xl font-bold">
                             <%= post.title %>
                         </div>
@@ -36,6 +36,7 @@
                             <%- post.content %>     
                         </div>             
                 </article>
+                <%- partial('_partial/giscus') %>
             </div>
         </div>
     </div>
