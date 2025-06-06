@@ -2,3 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* noto-sans-sc-regular - chinese-simplified_latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Noto Sans SC';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://webfonts-seven.vercel.app/noto-sans-sc-v36-chinese-simplified_latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+
+body, button, input, select, textarea {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 300;
+}
