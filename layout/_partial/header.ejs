@@ -9,7 +9,7 @@
   </div>
   <div class="navbar-center">
       <a href="/" class="btn btn-ghost text-xl">
-          <%= config.title %>
+          <%= config.author %>
       </a>
   </div>
   <div class="navbar-end">
@@ -29,9 +29,13 @@
       </div>
       <ul tabindex="0" class="menu menu-lg dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-52 p-2 shadow">
           <% for (var i in theme.menu){ %>
-              <li>
-                <a href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
-              </li>
+          <li>
+            <a href="<%- url_for(theme.menu[i]) %>"
+               class="rounded-none transition-colors
+                      hover:!bg-base-300 active:!bg-base-300 focus:!bg-base-300">
+              <%= i %>
+            </a>
+          </li>
           <% } %>
       </ul>
       </div>
