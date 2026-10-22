@@ -8,3 +8,35 @@ menu:
   Categories: /categories/
   Tags: /tags/
   About: /about/
+
+# Personal links shown below the profile. Add, remove, or reorder entries freely.
+# Icons use Lucide icon names: https://lucide.dev/icons/
+social_links:
+  - name: GitHub
+    url: https://github.com/mykonakona
+    icon: github
+  - name: Twitter
+    url: https://x.com/mykonakona
+    icon: twitter
+  - name: Bilibili
+    url: https://space.bilibili.com/123456789
+    icon: clapperboard
+  - name: RSS
+    url: /atom.xml
+    icon: rss
+
+# Giscus comments. Get repository/category IDs from https://giscus.app/zh-CN.
+# The color theme follows the site's light/dark mode automatically.
+giscus:
+  enable: true
+  repo: mykonakona/mykonakona.github.io
+  repo_id: MDEwOlJlcG9zaXRvcnkxMzM0NDI4Njc=
+  category: Announcements
+  category_id: DIC_kwDOB_QtM84CUfUd
+  mapping: url
+  strict: false
+  reactions_enabled: true
+  emit_metadata: false
+  input_position: top
+  lang: zh-CN
+  loading: lazy

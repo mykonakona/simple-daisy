@@ -1,10 +1,24 @@
 <% if (page.total > 1){ %>
-    <div class="flex justify-center items-center m-4 pt-4">
-        <div class="max-w-3xl mx-auto p-4">
+    <nav class="mx-4 my-6" aria-label="分页">
+        <div class="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 sm:hidden">
+            <% if (page.prev) { %>
+            <a class="btn btn-ghost justify-self-start" rel="prev" href="<%- url_for(page.prev_link) %>">上一页</a>
+            <% } else { %>
+            <span class="btn btn-ghost btn-disabled justify-self-start" aria-disabled="true">上一页</span>
+            <% } %>
+            <span class="text-sm tabular-nums" aria-current="page"><%= page.current %> / <%= page.total %></span>
+            <% if (page.next) { %>
+            <a class="btn btn-ghost justify-self-end" rel="next" href="<%- url_for(page.next_link) %>">下一页</a>
+            <% } else { %>
+            <span class="btn btn-ghost btn-disabled justify-self-end" aria-disabled="true">下一页</span>
+            <% } %>
+        </div>
+        <div class="hidden sm:flex justify-center">
             <div class="join">
                 <%- paginator({
-                    prev_text: "<",
-                    next_text: ">",
+                    prev_text: "上一页",
+                    next_text: "下一页",
+                    mid_size: 1,
                     page_class: "join-item btn",
                     prev_class: "join-item btn",
                     next_class: "join-item btn",
@@ -13,5 +27,5 @@
                   }) %>
             </div>
         </div>
-    </div>
+    </nav>
 <% } %>

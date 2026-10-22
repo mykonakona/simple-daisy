@@ -3,43 +3,49 @@
 <head>
     <%- partial('_partial/head') %>
 </head>
-    <%- partial('_partial/header') %>
 <body>
+    <%- partial('_partial/header') %>
     <div class="drawer lg:drawer-open">
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
         <div class="drawer-side">
             <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
-            <ul class="menu bg-base-300 text-base-content min-h-full w-80 pt-20 px-8">
+            <div class="flex min-h-dvh w-80 flex-col gap-2 bg-base-300 px-8 pt-8 pb-6 text-base-content xl:pt-16">
                 <div class="mx-auto">
-                    <div class="avatar pb-4">
+                    <div class="avatar pb-1">
                       <div class="w-36 rounded-full">
-                        <img alt="Tailwind CSS Navbar component" src="/images/icons/icon-284x284.png" />     
+                        <img alt="<%= config.author %> 的头像" src="<%- url_for('images/icons/icon-284x284.png') %>" width="144" height="144" />
                       </div>
                     </div>
                 </div>
-                <div class="text-xl font-normal mx-auto">
-                <%= config.author %>
+                <div class="flex flex-col gap-1">
+                    <div class="text-xl font-normal mx-auto">
+                        <%= config.author %>
+                    </div>
+                    <div class="text-base font-light mx-auto">
+                        <%= config.subtitle %>
+                    </div>
+                    <% if (Array.isArray(theme.social_links) && theme.social_links.length) { %>
+                    <div class="flex flex-wrap justify-center gap-2" aria-label="个人链接">
+                        <% theme.social_links.forEach(function(link) { %>
+                        <a
+                          class="btn btn-ghost btn-circle"
+                          href="<%- url_for(link.url) %>"
+                          aria-label="<%= link.name %>"
+                          title="<%= link.name %>"
+                        >
+                            <span class="lucide-icon text-2xl" style="--lucide-mask: url('<%- url_for('images/lucide/' + link.icon + '.svg') %>')" aria-hidden="true"></span>
+                        </a>
+                        <% }); %>
+                    </div>
+                    <% } %>
+                    <nav class="mt-2" aria-label="主导航">
+                        <%- partial('_partial/menu') %>
+                    </nav>
                 </div>
-                <div class="text-base font-light mx-auto pb-4">
-                <%= config.subtitle %>
+                <div class="mt-auto flex justify-center pt-6">
+                    <%- partial('_partial/theme-toggle') %>
                 </div>
-                 <div class="flex justify-around py-4">
-                    <a href="https://github.com/mykonakona">
-                        <i class="hgi hgi-stroke hgi-github" style="font-size:2rem"></i>
-                    </a>
-                    <a href="https://x.com/mykonakona">
-                        <i class="hgi hgi-stroke hgi-new-twitter" style="font-size:2rem"></i>
-                    </a>
-                    <a href="https://mykonakona.github.io/atom.xml">
-                        <i class="hgi hgi-stroke hgi-rss" style="font-size:2rem"></i>
-                    </a>                 
-                </div>   
-                <% for (var i in theme.menu){ %>
-                    <li class="hover:text-white transition duration-200 ease-in-out">
-                      <a class="px-4 py-2 text-xl" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
-                    </li>
-                <% } %>
-            </ul>
+            </div>
         </div>
         <div class="drawer-content bg-base-200 flex flex-col">          
         <!-- Page content here -->
@@ -51,7 +57,6 @@
         <!-- Page Content结束-->
         </div>        
     </div>
+    <script src="<%- url_for('js/theme-controls.js') %>"></script>
 </body>
 </html>
-
-

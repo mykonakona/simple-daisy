@@ -1,7 +1,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><%= (page && page.title) ? (page.title + ' - ' + config.title) : config.title %></title>
+<script>
+  try {
+    var savedTheme = localStorage.getItem('simple-daisy-theme');
+    var preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'black' : 'corporate';
+    document.documentElement.dataset.theme =
+      savedTheme === 'corporate' || savedTheme === 'black' ? savedTheme : preferredTheme;
+  } catch (error) {
+    console.warn('Unable to restore the saved color theme.', error);
+    document.documentElement.dataset.theme =
+      window.matchMedia('(prefers-color-scheme: dark)').matches ? 'black' : 'corporate';
+  }
+</script>
 <%- css(['css/main.css']) %> 
-<link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
 <link rel="preload" href="https://webfonts-seven.vercel.app/noto-sans-sc-v36-chinese-simplified_latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism-okaidia.min.css"/>
