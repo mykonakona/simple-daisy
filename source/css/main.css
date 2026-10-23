@@ -43,6 +43,18 @@
     max-height: calc(100dvh - 6rem - env(safe-area-inset-top));
 }
 
+/* Keep the profile's natural spacing; compact the space around the menu and theme controls. */
+@media (max-height: 44rem) {
+    .site-sidebar {
+        gap: 0.25rem;
+        padding-bottom: 1rem;
+    }
+
+    .site-sidebar-appearance {
+        padding-top: 0.25rem;
+    }
+}
+
 /* Hexo generates ordered lists; adapt that markup without styling each link. */
 .post-toc-nav ol {
     list-style: none;
