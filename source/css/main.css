@@ -43,6 +43,15 @@
     max-height: calc(100dvh - 6rem - env(safe-area-inset-top));
 }
 
+/* Hide only the sidebar scrollbar while keeping the menu scrollable. */
+.drawer-side {
+    scrollbar-width: none;
+}
+
+.drawer-side::-webkit-scrollbar {
+    display: none;
+}
+
 /* Keep the profile's natural spacing; compact the space around the menu and theme controls. */
 @media (max-height: 44rem) {
     .site-sidebar {
