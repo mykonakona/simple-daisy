@@ -1,6 +1,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><%= (page && page.title) ? (page.title + ' - ' + config.title) : config.title %></title>
+<%
+  const seoTitle = page.title ? (page.title + ' - ' + config.title) : config.title;
+  const seoDescription = strip_html(page.description || page.excerpt || config.description || config.subtitle || config.title);
+  const canonicalUrl = page.permalink || full_url_for(is_home() ? page.current_url : (page.path || ''));
+%>
+<title><%= seoTitle %></title>
+<link rel="icon" type="image/x-icon" href="<%= url_for('images/icons/favicon.ico') %>">
+<link rel="canonical" href="<%= canonicalUrl %>">
+<%- open_graph({ title: seoTitle, description: seoDescription, url: canonicalUrl }) %>
 <script>
   try {
     var savedTheme = localStorage.getItem('simple-daisy-theme');
