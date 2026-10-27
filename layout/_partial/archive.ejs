@@ -1,8 +1,10 @@
-<article class="mx-auto max-w-5xl p-4">
+<article class="@container w-full min-w-0">
 <% if (pagination == 2){ %>
+    <div class="grid grid-cols-1 gap-6 @[36rem]:grid-cols-2">
     <% page.posts.each(function(post){ %>
-      <%- partial('article', {post: post, index: true}) %>
+      <%- partial('_partial/article', {post: post, index: true}) %>
     <% }) %>
+    </div>
   <% } else { %>
     <% var last; %>
     <% page.posts.each(function(post, i){ %>
@@ -12,14 +14,14 @@
           </div></section>
         <% } %>
         <% last = year; %>
-        <section class="archives-wrap">
-            <div class="archive-year-wrap mx-4">
+        <section class="archives-wrap mb-6">
+            <div class="archive-year-wrap mb-2 text-sm text-base-content/65">
                 <a href="<%- url_for(config.archive_dir + '/' + year) %>" class="archive-year"><%= year %></a>
             </div>
             <div class="archives">
       <% } %>
-            <div class="collapse-title sm:text-3xl lg:text-3xl font-bold">
-                <a href="<%- url_for(post.link ? post.link : post.path) %>" itemprop="url"><%= post.title %></a>
+            <div class="py-3 text-2xl font-bold leading-snug wrap-anywhere sm:text-3xl">
+                <a class="link link-hover" href="<%- url_for(post.link ? post.link : post.path) %>" itemprop="url"><%= post.title %></a>
             </div>
     <% }) %>
     <% if (page.posts.length){ %>

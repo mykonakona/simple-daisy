@@ -5,7 +5,8 @@
 
 @plugin "@tailwindcss/typography";
 @plugin "daisyui" {
-    themes: corporate --default, black --prefersdark;
+    /* The renderer fills this from _config.yml's appearance settings. */
+    themes: false;
 }
 
 @font-face {
@@ -33,6 +34,16 @@
     }
 }
 
+/* Keep the sidebar background aligned with the shared centered container. */
+@media (min-width: 64rem) {
+    .site-layout {
+        --sidebar-edge: max(20rem, calc(50% - 24.5rem));
+        background-image: linear-gradient(to right,
+            var(--color-base-300) var(--sidebar-edge),
+            var(--color-base-200) var(--sidebar-edge));
+    }
+}
+
 /* Safe areas depend on the device rather than the component's appearance. */
 .site-header {
     padding-top: env(safe-area-inset-top);
@@ -41,27 +52,6 @@
 
 .mobile-menu-panel {
     max-height: calc(100dvh - 6rem - env(safe-area-inset-top));
-}
-
-/* Hide only the sidebar scrollbar while keeping the menu scrollable. */
-.drawer-side {
-    scrollbar-width: none;
-}
-
-.drawer-side::-webkit-scrollbar {
-    display: none;
-}
-
-/* Keep the profile's natural spacing; compact the space around the menu and theme controls. */
-@media (max-height: 44rem) {
-    .site-sidebar {
-        gap: 0.25rem;
-        padding-bottom: 1rem;
-    }
-
-    .site-sidebar-appearance {
-        padding-top: 0.25rem;
-    }
 }
 
 /* Hexo generates ordered lists; adapt that markup without styling each link. */

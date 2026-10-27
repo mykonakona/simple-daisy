@@ -1,5 +1,3 @@
-<div class="mx-auto p-4">
-    <article class="mx-auto max-w-5xl prose">
-        <%- list_tags(site.tags, {class: {a: 'btn join-item mx-2 mb-2'}, style: false, separator: ' '}) %>       
-    </article>
+<div class="flex min-w-0 flex-wrap items-start gap-2">
+    <%- list_tags(site.tags, {class: {a: 'btn h-auto min-h-10 max-w-full whitespace-normal wrap-anywhere'}, style: false, separator: ''}) %>
 </div>

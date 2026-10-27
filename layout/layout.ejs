@@ -1,34 +1,31 @@
 <!DOCTYPE html>
-<html data-theme="" lang="<%= config.language %>">
+<html class="[scrollbar-gutter:stable]" data-theme="" lang="<%= config.language %>">
 <head>
     <%- partial('_partial/head') %>
 </head>
-<body>
+<body class="site-layout bg-base-200 text-base-content">
     <%- partial('_partial/header') %>
-    <div class="drawer bg-base-300 lg:drawer-open">
-        <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-side lg:w-80">
-            <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
-            <div class="site-sidebar flex min-h-dvh w-80 flex-col gap-2 bg-base-300 px-8 pt-8 pb-6 text-base-content lg:w-full lg:pt-16">
-                <div class="mx-auto">
+    <div class="mx-auto min-h-[calc(100svh-4rem)] w-full max-w-[89rem] lg:grid lg:min-h-screen lg:grid-cols-[20rem_minmax(0,1fr)]">
+        <aside class="hidden min-w-0 bg-base-300 lg:block" aria-label="作者与导航">
+            <div class="flex flex-col gap-2 px-8 pt-16 pb-6 lg:sticky lg:top-0 lg:max-h-dvh">
+              <div class="flex min-h-0 flex-col gap-2 overflow-y-auto overscroll-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div class="mx-auto shrink-0">
                     <div class="avatar pb-1">
                       <div class="w-36 rounded-full">
                         <img alt="<%= config.author %> 的头像" src="<%- url_for('images/icons/icon-284x284.png') %>" width="144" height="144" />
                       </div>
                     </div>
                 </div>
-                <div class="flex flex-col gap-1">
-                    <div class="text-xl font-normal mx-auto">
-                        <%= config.author %>
-                    </div>
-                    <div class="text-base font-light mx-auto">
-                        <%= config.subtitle %>
-                    </div>
+                <div class="flex min-w-0 shrink-0 flex-col gap-1">
+                    <a class="text-center text-xl font-normal wrap-anywhere" href="<%- url_for('/') %>"><%= config.author %></a>
+                    <% if (config.subtitle) { %>
+                    <p class="text-center text-base font-light leading-normal text-base-content/70 wrap-anywhere"><%= config.subtitle %></p>
+                    <% } %>
                     <% if (Array.isArray(theme.social_links) && theme.social_links.length) { %>
-                    <div class="flex flex-wrap justify-center gap-2" aria-label="个人链接">
+                    <div class="mx-auto flex w-fit max-w-full items-center gap-1 overflow-x-auto overscroll-x-contain [scrollbar-width:thin]" aria-label="个人链接">
                         <% theme.social_links.forEach(function(link) { %>
                         <a
-                          class="btn btn-ghost btn-circle"
+                          class="btn btn-ghost btn-circle size-9 min-h-9 shrink-0 p-0"
                           href="<%- url_for(link.url) %>"
                           aria-label="<%= link.name %>"
                           title="<%= link.name %>"
@@ -42,20 +39,20 @@
                         <%- partial('_partial/menu') %>
                     </nav>
                 </div>
-                <div class="site-sidebar-appearance mt-auto flex justify-center pt-6">
+              </div>
+                <div class="flex shrink-0 justify-center pt-3">
                     <%- partial('_partial/theme-toggle') %>
                 </div>
             </div>
+        </aside>
+        <div class="mx-auto flex min-h-[calc(100svh-4rem)] w-full min-w-0 flex-col lg:min-h-screen lg:max-w-[69rem]">
+            <main class="min-w-0 w-full flex-1 px-4 py-5 sm:p-6 lg:p-8">
+                <div class="mx-auto w-full min-w-0 max-w-[52rem] lg:max-w-none">
+                    <%- body %>
+                </div>
+            </main>
+            <%- partial('_partial/footer') %>
         </div>
-        <div class="drawer-content bg-base-200 flex flex-col">          
-        <!-- Page content here -->
-        <!-- Page Content-->
-        <main class="flex-1 min-h-[85vh] w-full px-0 py-0 md:px-4 md:py-4">
-            <%- body %>             
-        </main>
-        <%- partial('_partial/footer') %>
-        <!-- Page Content结束-->
-        </div>        
     </div>
     <script src="<%- url_for('js/theme-controls.js') %>"></script>
 </body>

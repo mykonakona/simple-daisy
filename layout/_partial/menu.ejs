@@ -1,7 +1,7 @@
 <ul class="menu menu-lg w-full gap-1.5 p-0">
   <% Object.entries(theme.menu || {}).forEach(function([label, href]) { %>
   <li>
-    <a class="min-h-11 whitespace-normal wrap-anywhere aria-[current=page]:bg-base-content/10 aria-[current=page]:text-base-content aria-[current=page]:shadow-none" href="<%- url_for(href) %>"<% if (is_current(href)) { %> aria-current="page"<% } %>><%= label %></a>
+    <a class="min-h-11 whitespace-normal wrap-anywhere aria-[current=page]:bg-primary aria-[current=page]:text-primary-content aria-[current=page]:shadow-none" href="<%- url_for(href) %>"<% if (is_current(href)) { %> aria-current="page"<% } %>><%= label %></a>
   </li>
   <% }); %>
 </ul>

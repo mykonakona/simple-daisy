@@ -1,8 +1,10 @@
-<div class="not-prose grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 m-3 sm:m-4">
-	<% page.posts.each(function(post, index){ %>
-		<%- partial('_partial/article', {index: true, post: post}) %>
-	<% }) %>
+<div class="@container w-full min-w-0">
+	<div class="not-prose grid grid-cols-1 gap-4 sm:gap-6 @[36rem]:grid-cols-2">
+		<% page.posts.each(function(post){ %>
+			<%- partial('_partial/article', {index: true, post: post}) %>
+		<% }) %>
+	</div>
+	<% if (page.total > 1) { %>
+		<%- partial('_partial/paginator') %>
+	<% } %>
 </div>
-<% if (page.total > 1) { %>
-	<%- partial('_partial/paginator') %>
-<% } %>

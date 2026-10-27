@@ -9,6 +9,16 @@ menu:
   Tags: /tags/
   About: /about/
 
+# Built-in daisyUI themes for light/dark mode. Follows the system until selected.
+appearance:
+  light: corporate
+  dark: black
+
+# Prism code highlighting, independent of the site's light/dark mode.
+# Themes: default, dark, funky, okaidia, solarizedlight, tomorrow, twilight, coy.
+prism:
+  theme: okaidia
+
 # Personal links shown below the profile. Add, remove, or reorder entries freely.
 # Icons use Lucide icon names: https://lucide.dev/icons/
 social_links:

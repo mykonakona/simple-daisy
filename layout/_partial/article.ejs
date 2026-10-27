@@ -1,40 +1,39 @@
 <% if (index) { %>
-<div class="card min-w-0 bg-base-100 transition-shadow duration-200 md:shadow-xl md:hover:shadow-2xl">
-  <div class="card-body min-w-0 p-5 sm:p-8 md:min-h-60">
-    <h2 class="card-title mb-2 wrap-anywhere">
+<article class="card w-full min-w-0 border border-base-content/5 bg-base-100 shadow-sm motion-safe:transition-[translate,box-shadow] motion-safe:duration-200 lg:max-w-[33rem] lg:justify-self-start lg:hover:shadow-xl lg:motion-safe:hover:-translate-y-1">
+  <div class="card-body min-w-0 gap-3 p-5 sm:p-6 lg:min-h-60 lg:p-8">
+    <h2 class="card-title text-xl leading-normal wrap-anywhere">
       <a href="<%- url_for(post.link ? post.link : post.path) %>" itemprop="url"><%= post.title %></a>
     </h2>
     <% if (post.excerpt) { %>
-    <div class="post-excerpt min-h-10 mb-2 wrap-anywhere">
+    <div class="post-excerpt line-clamp-3 text-base leading-relaxed text-base-content/80 wrap-anywhere">
       <%- post.excerpt %>
     </div>
     <% } %>
-    <div class="card-actions items-center justify-between gap-3 mt-auto">
-      <div class="flex items-center gap-1 text-sm text-base-content/65">
+    <div class="mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-2 pt-3 text-sm">
+      <div class="flex shrink-0 items-center gap-1 text-base-content/65">
         <span class="lucide-icon" style="--lucide-mask: url('<%- url_for('images/lucide/calendar-days.svg') %>')" aria-hidden="true"></span>
-        <span>
+        <time datetime="<%= date(post.date, 'YYYY-MM-DDTHH:mm:ssZ') %>">
         <%- date(post.date, 'YYYY-MM-DD') %>
-        </span>
+        </time>
       </div>
-      <div class="flex flex-1 flex-wrap justify-end gap-2">
-        <%- list_tags(post.tags, {class: {a: 'badge badge-secondary h-auto min-h-6 max-w-full whitespace-normal wrap-anywhere'}, show_count: false, style: false, separator: ''}) %>
+      <div class="ml-auto flex min-w-0 max-w-full flex-wrap justify-end gap-2">
+        <%- list_tags(post.tags, {class: {a: 'badge badge-soft badge-secondary text-sm text-base-content h-auto min-h-6 max-w-full whitespace-normal wrap-anywhere before:size-1.5 before:translate-y-px before:shrink-0 before:rounded-full before:bg-secondary'}, show_count: false, style: false, separator: ''}) %>
       </div>
     </div>
   </div>
-</div>
+</article>
 <% } else { %>
-<% const rawToc = toc(post.content, {
+<% const articleToc = toc(post.content, {
   list_number: false,
   min_depth: 2,
   max_depth: 4,
   class_link: 'btn btn-ghost h-auto min-h-11 w-full justify-start whitespace-normal p-2 text-left text-sm font-normal wrap-anywhere'
 }) || ''; %>
-<%# Preserve existing widths through 120rem; above that, add 10% of the extra viewport width. %>
-<div class="mx-auto px-4 py-3 sm:p-4<%= rawToc ? ' 2xl:grid 2xl:max-w-[max(80rem,calc(10vw+68rem))] 2xl:grid-cols-[minmax(0,1fr)_16rem] 2xl:items-start 2xl:gap-8' : '' %>">
-  <div class="card mx-auto w-full min-w-0 bg-base-100 max-w-[max(64rem,calc(10vw+52rem))]">
-    <div class="card-body w-full min-w-0 mx-auto px-8 py-5 sm:p-8">
-      <article class="prose min-w-0 max-w-none pb-4 text-base prose-h2:mt-0 prose-h2:mb-2 md:text-lg">
-        <h1 class="mt-0 mb-4 text-2xl font-bold leading-snug wrap-anywhere sm:text-3xl"><%= post.title %></h1>
+<div class="w-full min-w-0<%= articleToc ? ' 2xl:grid 2xl:grid-cols-[minmax(0,1fr)_16rem] 2xl:items-start 2xl:gap-8' : '' %>">
+  <div class="card mx-auto w-full min-w-0 bg-base-100">
+    <div class="card-body w-full min-w-0 mx-auto p-8">
+      <article class="prose min-w-0 max-w-none pb-4 text-base prose-h2:mt-0 prose-h2:mb-2">
+        <h1 class="mt-0 mb-4 text-xl font-semibold leading-normal wrap-anywhere"><%= post.title %></h1>
 
         <div class="not-prose mb-5 text-sm text-base-content/65 flex flex-wrap items-center gap-x-4 gap-y-2 wrap-anywhere">
           <div class="flex items-center gap-2">
@@ -53,7 +52,7 @@
           </div>
         </div>
 
-        <div class="post-content min-w-0 wrap-anywhere text-base md:text-lg">
+        <div class="post-content min-w-0 wrap-anywhere text-base">
           <%- post.content %>
         </div>
       </article>
@@ -63,19 +62,16 @@
       <% } %>
     </div>
   </div>
-
-  <% if (rawToc) { %>
-  <aside class="hidden min-w-0 2xl:sticky 2xl:top-24 2xl:block">
-    <div class="max-h-[calc(100vh-7rem)] overflow-auto pr-1">
-      <div class="flex items-center gap-2 mb-3">
+  <% if (articleToc) { %>
+  <aside class="post-toc hidden min-w-0 2xl:sticky 2xl:top-24 2xl:block">
+    <div class="max-h-[calc(100dvh-7rem)] overflow-auto pr-1">
+      <div class="mb-3 flex items-center gap-2">
         <span class="text-sm font-semibold opacity-80">目录</span>
         <div class="divider m-0 flex-1"></div>
       </div>
-
       <nav class="post-toc-nav" aria-label="文章目录">
-        <%- rawToc %>
+        <%- articleToc %>
       </nav>
-
     </div>
   </aside>
   <% } %>

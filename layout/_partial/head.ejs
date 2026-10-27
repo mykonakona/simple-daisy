@@ -10,17 +10,24 @@
 <link rel="canonical" href="<%= canonicalUrl %>">
 <%- open_graph({ title: seoTitle, description: seoDescription, url: canonicalUrl }) %>
 <script>
-  try {
-    var savedTheme = localStorage.getItem('simple-daisy-theme');
-    var preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'black' : 'corporate';
-    document.documentElement.dataset.theme =
-      savedTheme === 'corporate' || savedTheme === 'black' ? savedTheme : preferredTheme;
-  } catch (error) {
-    console.warn('Unable to restore the saved color theme.', error);
-    document.documentElement.dataset.theme =
-      window.matchMedia('(prefers-color-scheme: dark)').matches ? 'black' : 'corporate';
-  }
+  (() => {
+    const appearance = window.simpleDaisyAppearance = <%- JSON.stringify(appearance_config()).replace(/</g, '\\u003c') %>;
+    const preferredMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    let savedMode;
+    try {
+      savedMode = localStorage.getItem('simple-daisy-theme');
+    } catch (error) {
+      console.warn('Unable to restore the saved color theme.', error);
+    }
+    // Migrate previously saved theme names to a light/dark preference.
+    if (savedMode !== 'light' && savedMode !== 'dark') {
+      if (savedMode === appearance.light) savedMode = 'light';
+      else if (savedMode === appearance.dark) savedMode = 'dark';
+    }
+    const mode = savedMode === 'light' || savedMode === 'dark' ? savedMode : preferredMode;
+    document.documentElement.dataset.theme = appearance[mode];
+  })();
 </script>
 <%- css(['css/main.css']) %> 
 <link rel="preload" href="https://webfonts-seven.vercel.app/noto-sans-sc-v36-chinese-simplified_latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism-okaidia.min.css"/>
+<link rel="stylesheet" href="<%= prism_stylesheet() %>"/>

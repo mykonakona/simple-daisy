@@ -33,16 +33,35 @@ module.exports = {
 
 ## 配置
 
-导航、个人链接和评论配置见主题 [_config.yml](_config.yml)。
+导航、配色、个人链接和评论配置见主题 [_config.yml](_config.yml)。
 
 | 项目 | 设置位置 |
 | --- | --- |
 | 博客信息 | 站点 `_config.yml` 中的 `title`、`author`、`subtitle` |
 | 导航 | 主题 `menu`，按配置顺序展示；关于页需自行创建 |
+| 配色与高亮 | 主题 `appearance.light` / `dark` 设置明暗配色，`prism.theme` 设置代码高亮样式 |
 | 个人链接 | 主题 `social_links`，设为 `[]` 隐藏；`icon` 使用 [本地 SVG 文件名](source/images/lucide)，不含扩展名 |
 | 评论 | 主题 `giscus`，从 [Giscus 配置页面](https://giscus.app/zh-CN) 获取自己的仓库、分类及 ID |
 | 头像 | 自行提供博客 `source/images/icons/` 下的 `icon-284x284.png` 和 `icon-152x152.png` |
 | 页脚 | [footer.ejs](layout/_partial/footer.ejs)，图标为 `source/images/site-logo.svg` |
+
+### 配色
+
+在主题 `_config.yml` 中配置明暗配色与 Prism 高亮：
+
+```yml
+appearance:
+  light: corporate
+  dark: black
+prism:
+  theme: okaidia
+```
+
+`light`、`dark` 填写已安装 daisyUI 的内置主题名。默认跟随系统，太阳／月亮按钮切换明暗；手动选择保存在浏览器中，清除后恢复跟随系统。
+
+`prism.theme` 可选 `default`、`dark`、`funky`、`okaidia`、`solarizedlight`、`tomorrow`、`twilight`、`coy`，独立于明暗模式。
+
+修改配置后重新生成网站，无需手动修改模板或样式。
 
 ### 个人链接与图标
 
@@ -86,4 +105,4 @@ giscus:
 
 ## 样式维护
 
-组件外观优先使用 daisyUI，布局和间距使用模板中的 Tailwind 工具类。[main.css](source/css/main.css) 仅保留字体、图标、安全区及文章内容适配，避免重复定义组件样式。
+组件外观优先使用 daisyUI，布局和间距使用模板中的 Tailwind 工具类。[main.css](source/css/main.css) 保留字体、图标、安全区及文章内容适配，配色由 `appearance` 自动注入。
