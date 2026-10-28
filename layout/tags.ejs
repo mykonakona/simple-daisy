@@ -1,3 +1,18 @@
-<div class="flex min-w-0 flex-wrap items-start gap-2">
-    <%- list_tags(site.tags, {class: {a: 'btn h-auto min-h-10 max-w-full whitespace-normal wrap-anywhere'}, style: false, separator: ''}) %>
+<div class="w-full min-w-0">
+  <section class="card min-w-0 border border-base-content/5 bg-base-100 shadow-sm" aria-label="文章标签">
+    <div class="card-body min-w-0 p-5 sm:p-6">
+      <% if (site.tags.length) { %>
+      <div class="flex min-w-0 flex-wrap items-start gap-2">
+        <% site.tags.sort('name', 1).each(function(tag) { %>
+        <a class="badge badge-soft badge-secondary h-auto min-h-8 max-w-full gap-2 px-3 py-1.5 text-sm font-normal text-base-content transition-colors hover:bg-base-200" href="<%- url_for(tag.path) %>">
+          <span class="min-w-0 whitespace-normal wrap-anywhere"><%= tag.name %></span>
+          <span class="shrink-0 text-xs text-base-content/55 tabular-nums" aria-label="<%= tag.length %> 篇文章"><%= tag.length %></span>
+        </a>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <p class="text-base-content/65">暂无标签。</p>
+      <% } %>
+    </div>
+  </section>
 </div>

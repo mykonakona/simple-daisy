@@ -25,12 +25,12 @@
                     <div class="mx-auto flex w-fit max-w-full items-center gap-1 overflow-x-auto overscroll-x-contain [scrollbar-width:thin]" aria-label="个人链接">
                         <% theme.social_links.forEach(function(link) { %>
                         <a
-                          class="btn btn-ghost btn-circle size-9 min-h-9 shrink-0 p-0"
+                          class="group btn btn-ghost btn-circle size-9 min-h-9 shrink-0 p-0 hover:text-primary focus-visible:text-primary"
                           href="<%- url_for(link.url) %>"
                           aria-label="<%= link.name %>"
                           title="<%= link.name %>"
                         >
-                            <span class="lucide-icon text-2xl" style="--lucide-mask: url('<%- url_for('images/lucide/' + link.icon + '.svg') %>')" aria-hidden="true"></span>
+                            <span class="lucide-icon text-2xl motion-safe:transition-transform motion-safe:duration-200 motion-safe:ease-out motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:scale-110 motion-safe:group-focus-visible:-translate-y-0.5 motion-safe:group-focus-visible:scale-110" style="--lucide-mask: url('<%- url_for('images/lucide/' + link.icon + '.svg') %>')" aria-hidden="true"></span>
                         </a>
                         <% }); %>
                     </div>

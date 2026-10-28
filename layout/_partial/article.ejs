@@ -9,14 +9,14 @@
       <%- post.excerpt %>
     </div>
     <% } %>
-    <div class="mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-2 pt-3 text-sm">
-      <div class="flex shrink-0 items-center gap-1 text-base-content/65">
+    <div class="mt-auto flex items-center gap-4 pt-3 text-sm">
+      <div class="flex min-h-6 shrink-0 items-center gap-1 text-base-content/65">
         <span class="lucide-icon" style="--lucide-mask: url('<%- url_for('images/lucide/calendar-days.svg') %>')" aria-hidden="true"></span>
         <time datetime="<%= date(post.date, 'YYYY-MM-DDTHH:mm:ssZ') %>">
         <%- date(post.date, 'YYYY-MM-DD') %>
         </time>
       </div>
-      <div class="ml-auto flex min-w-0 max-w-full flex-wrap justify-end gap-2">
+      <div class="flex min-w-0 flex-1 flex-wrap justify-end gap-2">
         <%- list_tags(post.tags, {class: {a: 'badge badge-soft badge-secondary text-sm text-base-content h-auto min-h-6 max-w-full whitespace-normal wrap-anywhere before:size-1.5 before:translate-y-px before:shrink-0 before:rounded-full before:bg-secondary'}, show_count: false, style: false, separator: ''}) %>
       </div>
     </div>

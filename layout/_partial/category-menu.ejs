@@ -1,0 +1,13 @@
+<% categories.filter(function(category) { return parent ? category.parent === parent : !category.parent; }).forEach(function(category) { %>
+<li class="min-w-0">
+  <a class="min-h-11 min-w-0 py-3" href="<%- url_for(category.path) %>">
+    <span class="min-w-0 flex-1 whitespace-normal wrap-anywhere"><%= category.name %></span>
+    <span class="badge badge-ghost badge-sm shrink-0 tabular-nums" aria-label="<%= category.length %> 篇文章"><%= category.length %></span>
+  </a>
+  <% if (categories.some(function(child) { return child.parent === category._id; })) { %>
+  <ul class="min-w-0 mr-0 pr-0">
+    <%- partial('_partial/category-menu', {categories: categories, parent: category._id}) %>
+  </ul>
+  <% } %>
+</li>
+<% }) %>

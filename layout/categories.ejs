@@ -1,7 +1,15 @@
-<div class="flex min-w-0 flex-wrap items-start gap-2">
-    <% site.categories.sort('name', 1).each(function(category) { %>
-    <a class="btn h-auto min-h-10 max-w-full whitespace-normal wrap-anywhere" href="<%- url_for(category.path) %>"><%= category.name %></a>
-    <% }); %>
+<div class="w-full min-w-0">
+  <section class="card min-w-0 border border-base-content/5 bg-base-100 shadow-sm" aria-label="文章分类">
+    <div class="card-body min-w-0 p-5 sm:p-6">
+      <% if (site.categories.length) { %>
+      <ul class="menu w-full min-w-0 p-0 text-base">
+        <%- partial('_partial/category-menu', {categories: site.categories.sort('name', 1).toArray(), parent: null}) %>
+      </ul>
+      <% } else { %>
+      <p class="text-base-content/65">暂无分类。</p>
+      <% } %>
+    </div>
+  </section>
 </div>
 
 
