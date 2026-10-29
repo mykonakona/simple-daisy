@@ -9,7 +9,7 @@
       <%- post.excerpt %>
     </div>
     <% } %>
-    <div class="mt-auto flex items-center gap-4 pt-3 text-sm">
+    <div class="mt-auto flex items-end gap-4 pt-3 text-sm">
       <div class="flex min-h-6 shrink-0 items-center gap-1 text-base-content/65">
         <span class="lucide-icon" style="--lucide-mask: url('<%- url_for('images/lucide/calendar-days.svg') %>')" aria-hidden="true"></span>
         <time datetime="<%= date(post.date, 'YYYY-MM-DDTHH:mm:ssZ') %>">
