@@ -1,9 +1,18 @@
+<% const footerItem = 'inline-flex items-center before:mr-3 before:h-3 before:w-px before:bg-base-content/20'; %>
 <footer class="flex-none border-t border-base-300 bg-base-200 px-4 py-4 text-sm text-base-content/60 sm:px-6 lg:px-8">
-  <div class="mx-auto flex w-full min-w-0 max-w-[52rem] flex-col gap-1.5 lg:max-w-none">
-    <p class="wrap-anywhere">© 2016 - <%= date(Date.now(), 'YYYY') %> <%= config.author %> · All rights reserved</p>
-    <p class="wrap-anywhere">
-      Powered by <a class="link link-hover" href="https://hexo.io/">Hexo</a>
-      · Theme <a class="link link-hover" href="https://github.com/mykonakona/simple-daisy">simple-daisy</a>
-    </p>
+  <div class="mx-auto flex w-full min-w-0 max-w-[52rem] flex-col gap-1.5 px-5 sm:px-6 lg:max-w-none lg:px-8">
+    <%# Each item draws its own leading divider; the negative margin pushes the one at the start of every row into the clipped area. %>
+    <div class="overflow-x-clip">
+      <p class="-ml-[calc(0.75rem+1px)] flex flex-wrap gap-x-3 gap-y-1 wrap-anywhere">
+        <span class="<%= footerItem %>">© 2016 - <%= date(Date.now(), 'YYYY') %> <%= config.author %></span>
+        <span class="<%= footerItem %>">All rights reserved</span>
+      </p>
+    </div>
+    <div class="overflow-x-clip">
+      <p class="-ml-[calc(0.75rem+1px)] flex flex-wrap gap-x-3 gap-y-1 wrap-anywhere">
+        <span class="<%= footerItem %>">Powered by&nbsp;<a class="link link-hover" href="https://hexo.io/">Hexo</a></span>
+        <span class="<%= footerItem %>">Theme&nbsp;<a class="link link-hover" href="https://github.com/mykonakona/simple-daisy">simple-daisy</a></span>
+      </p>
+    </div>
   </div>
 </footer>

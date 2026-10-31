@@ -6,7 +6,7 @@
 %>
 <div class="@container w-full min-w-0">
   <% if (page.category || page.tag || page.year) { %>
-  <nav class="breadcrumbs mb-4 max-w-full pt-0 text-sm text-base-content/65" aria-label="当前位置">
+  <nav class="breadcrumbs mb-4 max-w-full px-5 pt-0 text-sm sm:px-6 lg:px-8 text-base-content/65" aria-label="当前位置">
     <ul>
       <li><a href="<%- url_for((page.category ? config.category_dir : page.tag ? config.tag_dir : config.archive_dir) + '/') %>"><%= page.category ? '分类' : page.tag ? '标签' : '归档' %></a></li>
       <li aria-current="page"><%= page.category || page.tag || archivePeriod %></li>
@@ -31,7 +31,7 @@
         <% } %>
         <% lastYear = year; %>
         <section class="card min-w-0 border border-base-content/5 bg-base-100 shadow-sm" aria-labelledby="archive-year-<%= year %>">
-          <div class="card-body min-w-0 gap-3 p-5 sm:p-6">
+          <div class="card-body min-w-0 gap-3 p-5 sm:p-6 lg:p-8">
             <h2 id="archive-year-<%= year %>" class="card-title text-xl">
               <% if (config.archive_generator && config.archive_generator.yearly) { %>
               <a class="link link-hover" href="<%- url_for(config.archive_dir + '/' + year + '/') %>"><%= year %></a>
@@ -56,7 +56,7 @@
 
   <% if (!page.posts.length) { %>
   <div class="card border border-base-content/5 bg-base-100 shadow-sm">
-    <div class="card-body p-5 text-base-content/65 sm:p-6">暂无文章。</div>
+    <div class="card-body p-5 text-base-content/65 sm:p-6 lg:p-8">暂无文章。</div>
   </div>
   <% } %>
   <% if (page.total > 1) { %>
